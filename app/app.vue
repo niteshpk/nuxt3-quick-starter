@@ -1,12 +1,14 @@
 <script setup>
 const links = [{
-  label: 'Features',
-  to: '#features',
+  label: 'Learning Paths',
+  to: '/#learning-paths',
   exactHash: true
 }, {
-  label: 'Documentation',
-  to: 'https://ui.nuxt.com/pro',
-  target: '_blank'
+  label: 'Blogs',
+  to: '/blogs',
+}, {
+  label: 'About Me',
+  to: '/about-me',
 }]
 
 useHead({
@@ -21,8 +23,8 @@ useHead({
   }
 })
 
-const title = 'Nuxt UI Pro - Starter'
-const description = 'Nuxt UI Pro is a collection of premium Vue components built on top of Nuxt UI to create beautiful & responsive Nuxt applications in minutes.'
+const title = 'Code With Nitesh'
+const description = 'Code With Nitesh is a blog where you can learn about web development, programming, and more.'
 
 useSeoMeta({
   title,
@@ -38,34 +40,27 @@ useSeoMeta({
 <template>
   <UHeader :links="links">
     <template #logo>
-      Nuxt UI Pro <UBadge
-        label="Starter"
-        variant="subtle"
-        class="mb-0.5"
-      />
+      Code With Nitesh
     </template>
 
     <template #right>
       <UColorModeButton />
 
-      <UButton
-        to="https://github.com/nuxt-ui-pro/starter"
-        target="_blank"
-        icon="i-simple-icons-github"
-        aria-label="GitHub"
-        color="gray"
-        variant="ghost"
-      />
+      <UButton to="https://github.com/niteshpk" target="_blank" icon="i-simple-icons-github" aria-label="GitHub"
+        color="gray" variant="ghost" />
     </template>
   </UHeader>
 
-  <UMain>
+  <UMain class="bg-linear-to-r from-gray-800 via-blue-700 to-gray-900">
     <NuxtPage />
   </UMain>
 
   <UFooter>
     <template #left>
       Copyright © {{ new Date().getFullYear() }}
+    </template>
+    <template #right>
+      All rights reserved @ {{ title }}
     </template>
   </UFooter>
 </template>

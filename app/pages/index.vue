@@ -1,84 +1,33 @@
 <template>
   <div>
-    <ULandingHero
-      title="Nuxt UI Pro - Starter"
-      description="Nuxt UI Pro is a collection of premium components built on top of Nuxt UI to create beautiful & responsive Nuxt applications in minutes."
-    >
+    <ULandingHero title="Learn, build and grow together"
+      description="We are a community of developers, designers, creators, and builders. We are here to help you learn, build, and grow together.">
       <template #links>
-        <UButton
-          to="https://ui.nuxt.com/pro/guide"
-          target="_blank"
-          size="lg"
-          icon="i-heroicons-book-open"
-        >
-          Guide
+        <UButton to="/blogs" size="lg" icon="i-heroicons-book-open">
+          Learn More
         </UButton>
 
-        <UButton
-          to="https://ui.nuxt.com/pro/components"
-          target="_blank"
-          size="lg"
-          color="gray"
-          icon="i-heroicons-cube-transparent"
-        >
-          Components
+        <UButton to="/about-me" size="lg" color="gray" icon="i-heroicons-cube-transparent">
+          About Me
         </UButton>
       </template>
     </ULandingHero>
 
-    <ULandingSection
-      id="features"
-      title="The freedom to build anything"
-    >
+    <ULandingSection id="learning-paths" title="The freedom to build anything">
       <template #description>
-        Nuxt UI Pro ships with an extensive set of advanced components that cover a wide range of use-cases.<br> Carefully crafted to reduce boilerplate code without sacrificing flexibility.
+        We work with different technologies and tools to help you build anything you want. Starting with Front end
+        development to Backend development, we have got you covered. We also cover the Full stack development.
       </template>
 
       <UPageGrid>
-        <UPageCard
-          icon="i-heroicons-wrench-screwdriver"
-          title="Fully customizable"
-          description="Like Nuxt UI, change the style of any component from your App Config or customize them specifically through the ui prop."
-        />
-        <UPageCard
-          icon="i-heroicons-square-3-stack-3d"
-          title="Slots for everything"
-          description="Each component leverages the power of Vue's slots to give you the flexibility to build anything."
-        />
-        <UPageCard
-          icon="i-heroicons-device-phone-mobile"
-          title="Responsive by design"
-          description="Nuxt UI Pro components aims to structure your content, they are responsive by design and will adapt to any screen size."
-        />
+        <UPageCard icon="i-heroicons-computer-desktop" title="Front end development"
+          description="Front end development focuses on creating the user interface and user experience of an application. It involves using technologies like HTML, CSS, and JavaScript to build responsive and interactive web pages. A strong front end ensures that users have a seamless and engaging experience while interacting with your application." />
+        <UPageCard icon="i-simple-icons-amazondocumentdb" title="Backend / API development"
+          description="APIs are the bridges that connect different parts of an application, allowing them to communicate and share data. Developing robust APIs is crucial for enabling frontend and backend systems to work together harmoniously. With well-designed APIs, you can create scalable and maintainable applications that can easily integrate with third-party services and platforms." />
+        <UPageCard icon="i-simple-icons-nodedotjs" title="Full stack development"
+          description="Backend development is the backbone of any application, handling the server-side logic, database interactions, and API integrations. It ensures that the application runs smoothly, efficiently, and securely. With a strong backend, you can manage user authentication, data storage, and business logic, providing a seamless experience for your users." />
       </UPageGrid>
     </ULandingSection>
 
-    <ULandingSection>
-      <ULandingCTA
-        title="Ready to get started?"
-        description="Nuxt UI Pro is free in development, but you need a license to use it in production."
-      >
-        <template #links>
-          <UButton
-            to="https://ui.nuxt.com/pro/purchase"
-            target="_blank"
-            size="lg"
-            color="black"
-            icon="i-heroicons-credit-card"
-          >
-            Buy now
-          </UButton>
-          <UButton
-            to="https://ui.nuxt.com/pro/guide#license"
-            target="_blank"
-            size="lg"
-            color="gray"
-            trailing-icon="i-heroicons-arrow-right-20-solid"
-          >
-            License
-          </UButton>
-        </template>
-      </ULandingCTA>
-    </ULandingSection>
   </div>
 </template>
