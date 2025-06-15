@@ -2,6 +2,14 @@
 export default defineNuxtConfig({
   extends: ["@nuxt/ui-pro"],
 
+ 
+  ui: {
+    // @ts-ignore
+    pro: {
+      token: process.env.NUXT_UI_PRO_TOKEN
+    }
+  }, 
+  
   modules: ["@nuxt/eslint", "@nuxt/ui", "@nuxt/image"],
 
   devtools: {
@@ -47,5 +55,3 @@ export default defineNuxtConfig({
     }
   }
 });
-
-console.log(process.env.IS_ADMIN)
