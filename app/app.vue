@@ -1,4 +1,6 @@
 <script setup>
+const { public: { isAdmin } } = useRuntimeConfig()
+
 const links = [{
   label: 'Learning Paths',
   to: '/#learning-paths',
@@ -10,6 +12,13 @@ const links = [{
   label: 'About Me',
   to: '/about-me',
 }]
+
+if (isAdmin) {
+  links.push({
+    label: 'New Blog',
+    to: '/blogs/create',
+  });
+}
 
 useHead({
   meta: [

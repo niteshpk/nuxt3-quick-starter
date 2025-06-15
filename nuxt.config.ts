@@ -38,5 +38,14 @@ export default defineNuxtConfig({
     emailClientId: process.env.APP_CLIENT_ID,
     emailClientSecret: process.env.APP_CLIENT_SECRET,
     emailRefreshToken: process.env.APP_REFRESH_TOKEN,
+    dbHost: process.env.DB_HOST,
+    dbUser: process.env.DB_USER,
+    dbPassword: process.env.DB_PASSWORD,
+    dbName: process.env.DB_NAME,
+    public: {
+      isAdmin: process.env.IS_ADMIN
+    }
   }
 });
+
+console.log(process.env.IS_ADMIN)

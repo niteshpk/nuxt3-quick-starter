@@ -15,7 +15,7 @@ const {
         <p class="text-red-500" v-if="status === 'error'">{{ error }}</p>
 
         <UBlogList v-if="status === 'success'" orientation="horizontal">
-            <UBlogPost v-for="(post, index) in posts" :key="index" :title="post.title" :description="post.content"
+            <UBlogPost v-for="(post, index) in posts" :key="index" :title="post.title" :description="post.excerpt"
                 :image="post.image" :date="post.createdAt" :authors="post.authors" :to="`/blogs/${post.slug}`"
                 :badge="post.badge" />
         </UBlogList>

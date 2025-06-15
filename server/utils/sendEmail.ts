@@ -1,14 +1,6 @@
 import nodemailer from 'nodemailer'
 
-export async function sendEmail({
-  to,
-  subject,
-  html,
-}: {
-  to: string
-  subject: string
-  html: string
-}) {
+export async function sendEmail(to: string, subject: string, html: string) {
   const config = useRuntimeConfig()
 
   const transporter = nodemailer.createTransport({

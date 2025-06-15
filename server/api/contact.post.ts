@@ -1,29 +1,29 @@
 import { defineEventHandler, readBody } from 'h3'
+import { insert } from '../utils/query'
 import { sendEmail } from '../utils/sendEmail'
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event)
-  const {receiverId} = useRuntimeConfig()
+  const { name, email, phone, whatsapp, message } = await readBody(event)
 
-  const html = `
-    <h3>New Contact Form Submission</h3>
-    <p><strong>Name:</strong> ${body.name}</p>
-    <p><strong>Email:</strong> ${body.email}</p>
-    <p><strong>Phone:</strong> ${body.phone}</p>
-    <p><strong>WhatsApp:</strong> ${body.whatsapp}</p>
-    <p><strong>Message:</strong><br/>${body.message}</p>
-  `
+  if (!name || !email || !message) {
+    return { success: false, message: 'Name, Email, and Message are required.' }
+  }
 
   try {
-    await sendEmail({
-      to: receiverId,
-      subject: `New message from ${body.name} at CWN`,
-      html,
-    })
+    const insertId = await insert(
+      `INSERT INTO contacts (name, email, phone, whatsapp, message) VALUES (?, ?, ?, ?, ?)`,
+      [name, email, phone, whatsapp, message]
+    )
 
-    return { success: true, message: 'Email sent successfully!' }
-  } catch (error) {
-    console.error('Email error:', error)
-    return { success: false, message: 'Failed to send email' }
+    await sendEmail('your@email.com', `New contact from ${name}`, `
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Message:</strong> ${message}</p>
+    `)
+
+    return { success: true, message: 'Submitted successfully!', id: insertId }
+  } catch (err) {
+    console.error('Submit failed:', err)
+    return { success: false, message: 'Something went wrong. Please try again.' }
   }
 })

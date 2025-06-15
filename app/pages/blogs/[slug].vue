@@ -1,29 +1,75 @@
-<script setup>
+<script setup lang="ts">
+import { useRoute } from "vue-router";
 
-const description = `What is [slug].vue in Nuxt 3?
-In Nuxt 3, a[slug].vue file is a dynamic route component that captures URL parameters.This is useful for creating pages where the content changes based on the URL, such as:
+const route = useRoute();
+const router = useRouter();
 
-Blog posts(/blog/my - first - post)
-Product pages(/products/smartphone - xyz)
-User profiles(/user/johndoe)
-The[slug] acts as a wildcard, dynamically matching any value in that URL segment.
-
-  vue
-Copy
-Edi.`;
-
+// Fetch post based on slug
+const {
+  status,
+  data: post,
+  pending,
+  error,
+} = await useAsyncData(`post-${route.params.slug}`, () =>
+  $fetch(`/api/posts/${route.params.slug}`)
+);
 </script>
 
 <template>
-  <UContainer class="my-5 px-5">
-    <UBlogPost title="Nuxt 3.9" :description="description" date="Dec 25, 2023" orientation="vertical"
-      :image="{ src: 'https://picsum.photos/1200/900', alt: 'Nuxt 3.9' }" :authors="[
-        {
-          name: 'Daniel Roe',
-          avatar: { src: 'https://github.com/danielroe.png' },
-          to: 'https://twitter.com/danielcroe',
-          target: '_blank',
-        },
-      ]" :badge="{ label: 'Release' }"></UBlogPost>
+  <UContainer class="my-16 sm:py-8 px-4 p-8 space-y-8 max-w-7xl gap-8 sm:px-6 lg:px-8 sm:gap-y-8 flex flex-col mx-auto">
+    <!-- Loader -->
+    <Loader v-if="status === 'pending'" />
+
+    <!-- Error -->
+    <div v-else-if="error">
+      <div class="text-red-600 text-lg font-semibold">
+        {{ error.statusMessage || "Post not found." }}
+      </div>
+      <UButton
+        icon="i-lucide-arrow-left"
+        @click="router.push('/blogs')"
+        color="gray"
+        variant="soft"
+      >
+        Back to Blogs
+      </UButton>
+    </div>
+
+    <!-- Blog Post -->
+    <div v-else>
+      <UBlogPost
+        :title="post.title"
+        :description="post.null"
+        :date="post.createdAt"
+        orientation="vertical"
+        :image="{
+          src: post.image,
+          alt: post.title,
+        }"
+        :badge="post.badge"
+      />
+
+      <UUser
+        name="John Doe"
+        description="Software Engineer"
+        :avatar="{
+          src: 'https://i.pravatar.cc/150?u=john-doe',
+          icon: 'i-lucide-image'
+        }"
+      />
+
+      <!-- Render content safely -->
+      <div class="mt-6" v-html="post.content"></div>
+
+      <UButton
+        icon="i-lucide-arrow-left"
+        class="mt-4"
+        @click="router.push('/blogs')"
+        color="primary"
+        variant="soft"
+      >
+        Back to Blogs
+      </UButton>
+    </div>
   </UContainer>
 </template>
