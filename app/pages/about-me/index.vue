@@ -52,19 +52,9 @@
     </UCard>
 
     <!-- Contact Form -->
-    <UCard>
+      <UCard>
       <h2 class="text-xl font-semibold mb-4">Get in Touch</h2>
-      <form @submit.prevent="submitForm" class="space-y-4">
-        <UInput v-model="form.name" label="Name" placeholder="Name" required />
-        <UInput v-model="form.email" type="email" label="Email" placeholder="Email" required />
-        <UInput v-model="form.phone" label="Phone Number" placeholder="Phone Number" />
-        <UInput v-model="form.whatsapp" label="WhatsApp Number" placeholder="WhatsApp Number" />
-        <UTextarea v-model="form.message" label="Message" placeholder="Message" :rows="5" required />
-        <UButton type="submit" color="primary" :loading="loading">
-          Send Message
-        </UButton>
-        <p v-if="success" class="text-green-600">Message sent successfully!</p>
-      </form>
+      <ContactForm />
     </UCard>
   </div>
 </template>
@@ -82,6 +72,9 @@ const form = ref({
   message: ''
 })
 
+const githubLink = "https://github.com/niteshtpk";
+const linkedInLink = "https://www.linkedin.com/in/nitesh-kesarkar-4b923694";
+
 const profile = {
   name: "Nitesh Kesarkar",
   designation: "Senior Software Enginer",
@@ -98,36 +91,6 @@ const profile = {
   ]
 }
 
-const githubLink = "https://github.com/niteshtpk";
-const linkedInLink = "https://www.linkedin.com/in/nitesh-kesarkar-4b923694";
-
-const loading = ref(false)
-const success = ref(false)
-
-const submitForm = async () => {
-  loading.value = true
-  success.value = false
-
-  const { error } = await useFetch('/api/contact', {
-    method: 'POST',
-    body: form.value
-  })
-
-  loading.value = false
-  success.value = !error.value
-}
-
-const downloadResume = (link, target = '_blank') => {
-  window.open(link, target)
-}
-
-const downloadShortResume = () => {
-  downloadResume('/Nitesh-Kesarkar-Short-Resume-Feb-2025.pdf')
-}
-
-const downloadLongResume = () => {
-  downloadResume('/Nitesh-Kesarkar-Long-Resume-Feb-2025.pdf')
-}
 
 const resumeSections = [
   {
@@ -327,6 +290,18 @@ const resumeSections = [
   `
   }
 ]
+
+const downloadResume = (link, target = '_blank') => {
+  window.open(link, target)
+}
+
+const downloadShortResume = () => {
+  downloadResume('/Nitesh-Kesarkar-Short-Resume-Feb-2025.pdf')
+}
+
+const downloadLongResume = () => {
+  downloadResume('/Nitesh-Kesarkar-Long-Resume-Feb-2025.pdf')
+}
 
 </script>
 

@@ -31,4 +31,12 @@ export default defineNuxtConfig({
   alias: {
     "@components": "./app/components",
   },
+
+  runtimeConfig: {
+    emailId: process.env.APP_EMAIL_ID,
+    receiverId: process.env.APP_EMAIL_RECEIVER_ID,
+    emailClientId: process.env.APP_CLIENT_ID,
+    emailClientSecret: process.env.APP_CLIENT_SECRET,
+    emailRefreshToken: process.env.APP_REFRESH_TOKEN,
+  }
 });
