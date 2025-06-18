@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "buildCommand": "pnpm install && node patch-ui-pro-license.js && pnpm run build",
+  "outputDirectory": ".output",
+  "installCommand": "pnpm install",
+  "framework": "nuxt",
+  "routes": [
+    { "src": "/(.*)", "dest": "/" }
+  ]
+}
