@@ -7,16 +7,15 @@
         <div>
           <h1 class="text-2xl font-bold">{{ profile.name }}</h1>
           <p class="text-gray-400">{{ profile.designation }}</p>
-          <p class="text-sm text-gray-500 flex items-center justify-start gap-2">
+          <p class="text-sm text-gray-500 flex items-center gap-2">
             <UIcon name="i-lucide-mail" class="text-primary-400" /> {{ profile.email }}
           </p>
-          <p class="text-sm text-gray-500 flex items-center justify-start gap-2">
-            <UIcon name="i-lucide-phone" class="text-primary-400" />
-            {{ profile.phone }}
+          <p class="text-sm text-gray-500 flex items-center gap-2">
+            <UIcon name="i-lucide-phone" class="text-primary-400" /> {{ profile.phone }}
           </p>
-          <p class="text-sm text-gray-500 flex items-center justify-start gap-2">
-            <UIcon name="i-lucide-briefcase" class="text-primary-400" />
-            {{ profile.experience }}</p>
+          <p class="text-sm text-gray-500 flex items-center gap-2">
+            <UIcon name="i-lucide-briefcase" class="text-primary-400" /> {{ profile.experience }}
+          </p>
         </div>
         <div class="flex flex-wrap gap-2 justify-center md:justify-start">
           <UBadge v-for="(skill, index) in profile.skills" :key="index" color="blue" variant="soft" size="md">
@@ -32,10 +31,10 @@
         <UButton color="gray" icon="i-heroicons-document-arrow-down" @click="downloadLongResume">
           View Long Resume
         </UButton>
-        <UButton color="gray" icon="i-simple-icons-github" :to="githubLink" target="_blank">
+        <UButton color="gray" icon="i-simple-icons-github" :href="githubLink" target="_blank">
           GitHub
         </UButton>
-        <UButton color="gray" icon="i-simple-icons-linkedin" :to="linkedInLink" target="_blank">
+        <UButton color="gray" icon="i-simple-icons-linkedin" :href="linkedInLink" target="_blank">
           LinkedIn
         </UButton>
       </div>
@@ -52,7 +51,7 @@
     </UCard>
 
     <!-- Contact Form -->
-      <UCard>
+    <UCard>
       <h2 class="text-xl font-semibold mb-4">Get in Touch</h2>
       <ContactForm />
     </UCard>
@@ -61,36 +60,24 @@
 
 
 <script setup>
-import { ref } from 'vue'
-import { useFetch } from '#app'
+const toast = useToast()
 
-const form = ref({
-  name: '',
-  email: '',
-  phone: '',
-  whatsapp: '',
-  message: ''
-})
-
-const githubLink = "https://github.com/niteshtpk";
-const linkedInLink = "https://www.linkedin.com/in/nitesh-kesarkar-4b923694";
+const githubLink = 'https://github.com/niteshpk'
+const linkedInLink = 'https://www.linkedin.com/in/nitesh-kesarkar-4b923694'
 
 const profile = {
-  name: "Nitesh Kesarkar",
-  designation: "Senior Software Enginer",
-  email: "niteshkesarkar136@gmail.com",
-  phone: "+91-8446363349",
-  experience: "9+ years",
-  photo: "/me.png",
+  name: 'Nitesh Kesarkar',
+  designation: 'Senior Software Engineer',
+  email: 'niteshkesarkar136@gmail.com',
+  phone: '+91-8446363349',
+  experience: '9+ years',
+  photo: '/me.png',
   skills: [
     'MEAN', 'MERN', 'Vue.js', 'HTML', 'CSS', 'Bootstrap', 'Angular Material', 'Tailwind CSS', 'Semantic UI',
-    'TypeScript', 'JavaScript', 'PHP', 'Laravel', 'Joomla', 'OpenCart',
-    'SQL', 'Firebase', 'MySQL', 'MongoDB',
-    'Git', 'Bitbucket', 'Jira',
-    'Azure DevOps', 'Docker', 'GitHub CI-CD', 'SonarCloud',
+    'TypeScript', 'JavaScript', 'PHP', 'Laravel', 'Joomla', 'OpenCart', 'SQL', 'Firebase', 'MySQL', 'MongoDB',
+    'Git', 'Bitbucket', 'Jira', 'Azure DevOps', 'Docker', 'GitHub CI-CD', 'SonarCloud'
   ]
 }
-
 
 const resumeSections = [
   {
@@ -291,18 +278,22 @@ const resumeSections = [
   }
 ]
 
-const downloadResume = (link, target = '_blank') => {
-  window.open(link, target)
+function triggerDownload(link) {
+  const a = document.createElement('a')
+  a.href = link
+  a.download = ''
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
 }
 
-const downloadShortResume = () => {
-  downloadResume('/Nitesh-Kesarkar-Short-Resume-Feb-2025.pdf')
+function downloadShortResume() {
+  triggerDownload('/Nitesh-Kesarkar-Short-Resume-Feb-2025.pdf')
 }
 
-const downloadLongResume = () => {
-  downloadResume('/Nitesh-Kesarkar-Long-Resume-Feb-2025.pdf')
+function downloadLongResume() {
+  triggerDownload('/Nitesh-Kesarkar-Long-Resume-Feb-2025.pdf')
 }
-
 </script>
 
 <style scoped>
@@ -311,12 +302,10 @@ const downloadLongResume = () => {
   text-decoration: underline;
   font-weight: 500;
 }
-
 :deep(.project-link:hover) {
   color: rgb(var(--color-primary-500));
   text-decoration: none;
 }
-
 :deep(.mx-50p) {
   margin-left: 50px;
   margin-right: 50px;

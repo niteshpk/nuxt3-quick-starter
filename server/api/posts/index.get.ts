@@ -41,12 +41,14 @@ export default defineEventHandler(async (event) => {
       authors: [
         {
           id: row.author_id,
-          name: row.author_name,
-          to: `/author/${row.author_id}`,
+          name:  row.author_name,
+          description: row.author_name,
           avatar: {
             src: '/me.png',
             alt: row.author_name,
           },
+          href: 'https://github.com/niteshpk',
+          target: '_blank'
         },
       ],
     }

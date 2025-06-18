@@ -1,5 +1,7 @@
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+   <div class="flex items-center justify-center h-screen">
+       
+    <svg xmlns="http://www.w3.org/2000/svg" width="3m" height="3em" viewBox="0 0 24 24">
         <rect width="2.8" height="12" x="1" y="6" fill="currentColor">
             <animate id="svgSpinnersBarsScale0" attributeName="y" begin="0;svgSpinnersBarsScale1.end-0.1s"
                 calcMode="spline" dur="0.6s" keySplines=".36,.61,.3,.98;.36,.61,.3,.98" values="6;1;6"></animate>
@@ -31,6 +33,7 @@
                 keySplines=".36,.61,.3,.98;.36,.61,.3,.98" values="12;22;12"></animate>
         </rect>
     </svg>
+    </div>
 </template>
 
 <script lang="ts">

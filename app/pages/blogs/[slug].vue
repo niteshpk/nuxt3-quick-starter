@@ -49,14 +49,6 @@ const {
         :badge="post.badge"
       />
 
-      <UUser
-        name="John Doe"
-        description="Software Engineer"
-        :avatar="{
-          src: 'https://i.pravatar.cc/150?u=john-doe',
-          icon: 'i-lucide-image'
-        }"
-      />
 
       <!-- Render content safely -->
       <div class="mt-6" v-html="post.content"></div>

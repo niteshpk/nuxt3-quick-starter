@@ -55,13 +55,16 @@ useSeoMeta({
     <template #right>
       <UColorModeButton />
 
-      <UButton to="https://github.com/niteshpk" target="_blank" icon="i-simple-icons-github" aria-label="GitHub"
+      <UButton :href="'https://github.com/niteshpk'" target="_blank" icon="i-simple-icons-github" aria-label="GitHub"
         color="gray" variant="ghost" />
     </template>
   </UHeader>
 
   <UMain class="bg-linear-to-r from-gray-800 via-blue-700 to-gray-900">
+  <NuxtLayout>
     <NuxtPage />
+  </NuxtLayout>
+
   </UMain>
 
   <UFooter>
