@@ -83,3 +83,14 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+
+```
+node_modules/@nuxt/ui-pro/modules/pro/index.ts
+```
+
+````
+nuxt.hook('build:before', async () => {
+  await validateLicense({ key, theme, dir: nuxt.options.rootDir })
+})
+```
