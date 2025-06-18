@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "npm run patch && nuxt prepare",
+    "postinstall": "node patch-ui-pro-license.js",
+    "prepare": "nuxt prepare",
     "lint": "eslint .",
     "typecheck": "nuxt typecheck",
     "patch": "node patch-ui-pro-license.js"
